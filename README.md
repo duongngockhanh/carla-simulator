@@ -60,7 +60,7 @@ This section will cover spawning, destruction, types, and how to manage them.
 blueprint_library = world.get_blueprint_library()
 ```
 
-### 2.1. Vehicles
+### 2.2. Vehicles
 Create a set of locations on the map where vehicles can be placed.
 ```
 spawn_points = world.get_map().get_spawn_points()
@@ -83,3 +83,10 @@ control = carla.VehicleControl(throttle=0.0, steer=0.0, brake=0.0, hand_brake=Fa
 vehicle.apply_control(control)
 ```
 
+### 2.3. Sensors
+This example spawns a camera sensor, attaches it to a vehicle, and tells the camera to save the images generated to disk.
+```
+camera_bp = blueprint_library.find('sensor.camera.rgb')
+camera = world.spawn_actor(camera_bp, relative_transform, attach_to=my_vehicle)
+camera.listen(lambda image: image.save_to_disk('output/%06d.png' % image.frame))
+```

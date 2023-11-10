@@ -24,6 +24,7 @@ Declare world
 ```
 world = client.get_world()
 ```
+
 ### 1.2. Synchronous and asynchronous mode
 Use **asynchronous** mode if you are in **third-person** view. (By default, CARLA runs in asynchronous mode.)
 
@@ -53,3 +54,32 @@ Actors in CARLA includes:
 - the spectator.
 
 This section will cover spawning, destruction, types, and how to manage them.
+
+### 2.1. Bluerprint library
+```
+blueprint_library = world.get_blueprint_library()
+```
+
+### 2.1. Vehicles
+Create a set of locations on the map where vehicles can be placed.
+```
+spawn_points = world.get_map().get_spawn_points()
+```
+Spawn a car
+```
+vehicle_bp = blueprint_library.find('vehicle.lincoln.mkz_2020')
+vehicle = world.try_spawn_actor(vehicle_bp, random.choice(spawn_points))
+print(vehicle)
+```
+Set the sight position relative to the vehicle.
+```
+spectator = world.get_spectator()
+transform = carla.Transform(vehicle.get_transform().transform(Location(x=-4, z=2.5)), vehicle.get_transform().rotation)
+spectator.set_transform(transform)
+```
+Set up vehicle controls. In the following code, apply_control() is used to send control signals to the vehicle. In this example, the speed is set to 1.0 (maximum), the steering angle is set to 0.0, no brake, no handbrake, and no reverse.
+```
+control = carla.VehicleControl(throttle=0.0, steer=0.0, brake=0.0, hand_brake=False, reverse=False)
+vehicle.apply_control(control)
+```
+

@@ -3,6 +3,8 @@ The version I use is CARLA 0.9.14 (stable and bug-free)
 
 The official guide starts [here](https://carla.readthedocs.io/en/0.9.14/foundations/)
 
+Traffic Manager: [here](https://carla.readthedocs.io/en/docs-preview/adv_traffic_manager/)
+
 ## 1. Foundations
 
 ### 1.1. World and client

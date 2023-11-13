@@ -5,6 +5,11 @@ The official guide starts [here](https://carla.readthedocs.io/en/0.9.14/foundati
 
 Traffic Manager: [here](https://carla.readthedocs.io/en/docs-preview/adv_traffic_manager/)
 
+## 0. Run
+```
+/bin/bash ./CarlaUE4.sh
+```
+
 ## 1. Foundations
 
 ### 1.1. World and client
@@ -62,24 +67,32 @@ This section will cover spawning, destruction, types, and how to manage them.
 blueprint_library = world.get_blueprint_library()
 ```
 
-### 2.2. Vehicles
-Create a set of locations on the map where vehicles can be placed.
+### 2.2. Single Vehicle
+2.2.1. Create a set of locations on the map where vehicles can be placed.
 ```
 spawn_points = world.get_map().get_spawn_points()
 ```
-Spawn a car
+
+2.2.2. Spawn a car
 ```
 vehicle_bp = blueprint_library.find('vehicle.lincoln.mkz_2020')
 vehicle = world.try_spawn_actor(vehicle_bp, random.choice(spawn_points))
 print(vehicle)
 ```
-Set the sight position relative to the vehicle.
+
+2.2.3. Set the sight position relative to the vehicle.
 ```
 spectator = world.get_spectator()
 transform = carla.Transform(vehicle.get_transform().transform(Location(x=-4, z=2.5)), vehicle.get_transform().rotation)
 spectator.set_transform(transform)
 ```
-Set up vehicle controls. In the following code, apply_control() is used to send control signals to the vehicle. In this example, the speed is set to 1.0 (maximum), the steering angle is set to 0.0, no brake, no handbrake, and no reverse.
+
+2.2.4. Turn on autopilot mode
+```
+vehicle.set_autopilot(True)
+```
+
+2.2.5. **Optinal**: Set up vehicle controls. In the following code, apply_control() is used to send control signals to the vehicle. In this example, the speed is set to 1.0 (maximum), the steering angle is set to 0.0, no brake, no handbrake, and no reverse.
 ```
 control = carla.VehicleControl(throttle=0.0, steer=0.0, brake=0.0, hand_brake=False, reverse=False)
 vehicle.apply_control(control)

@@ -5,13 +5,19 @@ The official guide starts [here](https://carla.readthedocs.io/en/0.9.14/foundati
 
 Traffic Manager: [here](https://carla.readthedocs.io/en/docs-preview/adv_traffic_manager/)
 
-## 0. Run
+
+## A. Instruction videos
+1. First-person Perspective (FPP): [YouTube](https://www.youtube.com/watch?v=J1F32aVSYaU)
+2. Spawn many vehicles: [YouTube](https://www.youtube.com/watch?v=pONr1R1dy88)
+3. Save Video and Image: [YouTube](https://www.youtube.com/watch?v=EzxhkEQUJqY)
+4. Trajectory: [YouTube](https://www.youtube.com/watch?v=wj4qCNKAKTk)
+
+## B. Run
 ```
 /bin/bash ./CarlaUE4.sh
 ```
 
 ## 1. Foundations
-
 ### 1.1. World and client
 Declare libraries
 ```
